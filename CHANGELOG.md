@@ -1,3 +1,8 @@
+## 1.0.2+1
+
+- Fixes `README` typos
+- Removes `documentation` URL in `pubspec.yaml`
+
 ## 1.0.2
 
 - Updates `meta` to `1.7.0` for compatibility

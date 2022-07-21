@@ -2,11 +2,10 @@
 
 A dead-simple interface for creating a streamable data source.
 
-Think of it as "extended" `StreamController`.
+Think of it as an "extended" `StreamController`.
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
-
 
 ## Usage
 
