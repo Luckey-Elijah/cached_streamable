@@ -1,6 +1,6 @@
 name: cached_streamable
 description: A dead-simple interface for creating a streamable data source.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/Luckey-Elijah/cached_streamable
 repository: https://github.com/Luckey-Elijah/cached_streamable
 issue_tracker: https://github.com/Luckey-Elijah/cached_streamable/issues
@@ -10,7 +10,7 @@ environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
-  meta: ^1.8.0
+  meta: ^1.7.0
 
 dev_dependencies:
   test: ^1.19.2

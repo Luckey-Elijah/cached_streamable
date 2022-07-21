@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Updates `meta` to `1.7.0` for compatibility
+
 ## 1.0.1
 
 - Removes `mocktail` dependency
