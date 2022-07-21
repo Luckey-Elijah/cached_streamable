@@ -1,6 +1,6 @@
 name: cached_streamable
 description: A dead-simple interface for creating a streamable data source.
-version: 1.0.0+1
+version: 1.0.0
 publish_to: none
 
 environment:
