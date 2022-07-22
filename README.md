@@ -1,6 +1,6 @@
 # `cached_streamable`
 
-A dead-simple interface for creating a streamable data source.
+Simple interface for creating a streamable data source that caches it latest value.
 
 Think of it as an "extended" `StreamController`.
 
@@ -12,6 +12,8 @@ Think of it as an "extended" `StreamController`.
 Create your implementation by extending `CachedStreamable`.
 Use the `cache` getter and setter to update the value.
 You can use any single data type. This example uses `int`.
+(`cache` getter is where you can access the latest data.
+`cache` setter is where you can update the cache and notify listeners.)
 
 ```dart
 class CounterRepository extends CachedStreamable<int> {

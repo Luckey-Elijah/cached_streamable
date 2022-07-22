@@ -1,3 +1,7 @@
+## 1.0.2+2
+
+- Update description
+
 ## 1.0.2+1
 
 - Fixes `README` typos
