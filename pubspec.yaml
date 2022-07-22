@@ -1,6 +1,6 @@
 name: cached_streamable
 description: Simple interface for creating a streamable data source that caches it latest value.
-version: 1.0.2+1
+version: 1.0.2+2
 homepage: https://github.com/Luckey-Elijah/cached_streamable
 repository: https://github.com/Luckey-Elijah/cached_streamable
 issue_tracker: https://github.com/Luckey-Elijah/cached_streamable/issues
