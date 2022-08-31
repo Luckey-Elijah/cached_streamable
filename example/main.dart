@@ -1,23 +1,34 @@
-// ignore_for_file: avoid_print
+import 'dart:io';
 
 import 'package:cached_streamable/cached_streamable.dart';
 
-class CounterRepository extends CachedStreamable<int> {
-  CounterRepository() : super(0);
+class OtherCounter extends CachedStreamable<int> {
+  OtherCounter() : super(0);
 
-  // Some arbitrary future that updates the internal cache
   Future<void> increment() =>
-      Future<void>.delayed(Duration.zero, () => cache = cache + 1);
-
-  int get value => cache;
+      Future<void>.delayed(Duration.zero, () => value = value + 1);
 }
 
+/// prints:
+/// ```
+/// otherCounter: 0
+/// counter: 0
+/// otherCounter: 1
+/// counter: 1
+/// ```
 Future<void> main() async {
-  final counter = CounterRepository()..stream.listen(print);
+  final counter = CachedStreamable<int>(0);
+  final otherCounter = OtherCounter();
+
+  // listening will print the current value - "0"
+  otherCounter.stream.listen((value) => stdout.writeln('otherCounter: $value'));
+  counter.stream.listen((value) => stdout.writeln('counter: $value'));
 
   // prints "1"
-  await counter.increment();
+  await otherCounter.increment();
+  counter.value++;
 
   /// don't forget to close
+  await otherCounter.close();
   await counter.close();
 }

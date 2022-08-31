@@ -1,45 +1,39 @@
 import 'package:cached_streamable/cached_streamable.dart';
 import 'package:test/test.dart';
 
-class FakeCachedStreamable extends CachedStreamable<int> {
-  FakeCachedStreamable(super.initial);
-}
-
 void main() {
   group('CachedStreamable<T>', () {
     test('can have multiple listeners', () {
-      final fakeCachedStreamable = FakeCachedStreamable(0);
+      final _cachedStreamable = CachedStreamable<int>(0);
 
-      fakeCachedStreamable.stream.listen((_) {});
-      void f() => fakeCachedStreamable.stream.listen((_) {});
+      _cachedStreamable.stream.listen((_) {});
+      void f() => _cachedStreamable.stream.listen((_) {});
       expect(f, returnsNormally);
     });
 
     test('close() closes the controller', () {
-      final fakeCachedStreamable = FakeCachedStreamable(0);
+      final _cachedStreamable = CachedStreamable<int>(0);
 
-      void f() => fakeCachedStreamable.close();
+      void f() => _cachedStreamable.close();
 
       expect(f, returnsNormally);
-      expect(fakeCachedStreamable.isClosed, isTrue);
+      expect(_cachedStreamable.isClosed, isTrue);
     });
 
-    test('cache setter updates with new cache', () {
-      final fakeCachedStreamable = FakeCachedStreamable(0);
+    test('value setter updates with new cache', () {
+      final _cachedStreamable = CachedStreamable<int>(0);
 
-      // ignore: invalid_use_of_protected_member
-      void f() => fakeCachedStreamable.cache = 1;
-      expect(fakeCachedStreamable.stream, emits(1));
+      void f() => _cachedStreamable.value = 1;
+      expect(_cachedStreamable.stream, emits(1));
       expect(f, returnsNormally);
     });
 
-    test('cache setter emits nothing with identical value', () {
+    test('value setter emits nothing with identical value', () {
       const seed = 0;
-      final fakeCachedStreamable = FakeCachedStreamable(seed);
+      final _cachedStreamable = CachedStreamable<int>(seed);
 
-      // ignore: invalid_use_of_protected_member
-      void f() => fakeCachedStreamable.cache = seed;
-      expect(fakeCachedStreamable.stream, emitsInOrder([0]));
+      void f() => _cachedStreamable.value = seed;
+      expect(_cachedStreamable.stream, emitsInOrder([0]));
       expect(f, returnsNormally);
     });
   });

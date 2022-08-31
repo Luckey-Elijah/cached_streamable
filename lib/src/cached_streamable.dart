@@ -1,45 +1,33 @@
 import 'dart:async';
 
-import 'package:meta/meta.dart';
-
 /// {@template cached_streamable}
 /// Make any data type streamable.
 /// {@endtemplate}
-/// This class should be extended.
 ///
 /// **Example**
 /// ```dart
-/// class CounterRepository extends CachedStreamable<int> {
-///   CounterRepository() : super(0);
-///
-///   Future<void> increment() =>
-///     Future.delayed(Duration.zero, () => cache = cache + 1);
-/// }
-///
 /// Future<void> main() async {
-///   final counter = CounterRepository()..stream.listen(print); // 0
-///   await counter.increment(); // 1
+///   final counter = CachedStreamable<int>(0)..stream.listen(print);
+///   counter.value++;
 ///   await counter.close();
 /// }
 /// ```
-abstract class CachedStreamable<T> {
+class CachedStreamable<T> {
   /// {@macro cached_streamable}
-  CachedStreamable(T initial) : _cache = initial;
+  CachedStreamable(T value) : _value = value;
 
   late final StreamController<T> _controller = StreamController<T>.broadcast();
 
-  T _cache;
+  T _value;
 
-  /// Update the cache.
-  @protected
-  set cache(T value) {
-    if (_cache == value) return;
-    _controller.add(_cache = value);
+  /// Update the cached value.
+  set value(T value) {
+    if (_value == value) return;
+    _controller.add(_value = value);
   }
 
-  /// Current [cache] value.
-  @protected
-  T get cache => _cache;
+  /// Current cached value.
+  T get value => _value;
 
   /// Closes this instance.
   FutureOr<void> close() => _controller.close();
@@ -49,7 +37,7 @@ abstract class CachedStreamable<T> {
 
   /// The [stream] of cached values.
   Stream<T> get stream async* {
-    yield cache;
+    yield value;
     yield* _controller.stream;
   }
 }
