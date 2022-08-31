@@ -1,3 +1,7 @@
+## 1.1.0+1
+
+- Fixes `README` typos
+
 ## 1.1.0
 
 - Remove `abstract` from class definition to allow inline streamable creation
