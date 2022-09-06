@@ -17,8 +17,12 @@ class OtherCounter extends CachedStreamable<int> {
 /// counter: 1
 /// ```
 Future<void> main() async {
-  final counter = CachedStreamable<int>(0);
   final otherCounter = OtherCounter();
+  final counter = CachedStreamable<int>(
+    0,
+    // ensures only incrementing the value
+    updateWhen: (oldValue, newValue) => oldValue < newValue,
+  );
 
   // listening will print the current value - "0"
   otherCounter.stream.listen((value) => stdout.writeln('otherCounter: $value'));

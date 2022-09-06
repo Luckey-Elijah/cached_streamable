@@ -1,3 +1,15 @@
+## 1.1.1
+
+- Adds `updateWhen` method:
+
+```dart
+final counter = CachedStreamable<int>(
+  0,
+  // ensures only incrementing the value (doesn't update on `--`)
+  updateWhen: (oldValue, newValue) => oldValue < newValue,
+);
+```
+
 ## 1.1.0+1
 
 - Fixes `README` typos
